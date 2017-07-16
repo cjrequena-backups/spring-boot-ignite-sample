@@ -1,0 +1,57 @@
+# see http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# see: https://github.com/Netflix
+
+server:
+  port: 8080
+  contextPath: /
+
+# =========================
+#
+# =========================
+spring:
+  application:
+    name: springboot-ignite-sample
+  profiles:
+    active: default
+
+# =========================
+# HEALTH INDICATORS
+# =========================
+management:
+  context-path: /admin # Management endpoint context-path. For instance `/actuator`
+  security:
+    enabled: false
+  health:
+    defaults:
+      enabled: true # Enable default health indicators
+    status:
+      order: DOWN, OUT_OF_SERVICE, UNKNOWN, UP # Comma-separated list of health statuses in order of severity
+
+# =========================
+#
+# =========================
+datasources:
+  mysql_local:
+    jdbcUrl: jdbc:mysql://localhost:3306/hotel
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    poolName: AtlasHikariCP
+    maxLifetime: 1200000
+    maximumPoolSize: 10
+    minimumIdle: 1
+mybatis:
+  type-aliases-package: com.aurora.sample.db.repository
+  type-handlers-package: classpath*:**/SqlMaps/*.xml
+  config-location: classpath:mybatis-config.xml
+cache:
+  caffeine:
+    configurations:
+      - cacheName: CAFFEINE_CACHE_1
+        #initialCapacity:
+        maximumSize: 100
+        #maximumWeight:
+        #expireAfterAccess: #SECONDS
+        #expireAfterWrite: #SECONDS
+        #refreshAfterWrite: #SECONDS
+        #concurrencyLevel:

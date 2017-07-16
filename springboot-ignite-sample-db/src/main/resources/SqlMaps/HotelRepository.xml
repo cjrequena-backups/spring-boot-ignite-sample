@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aurora.sample.db.repository.HotelRepository">
+
+	<resultMap id="BaseResultMap" type="Hotel">
+		<id column="HOTEL_ID" jdbcType="INTEGER" property="hotelId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="FAX" jdbcType="VARCHAR" property="fax" />
+		<result column="RATE" jdbcType="VARCHAR" property="rate" />
+		<result column="LOCAL_CURRENCY_CODE" jdbcType="VARCHAR" property="localCurrencyCode" />
+		<result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+	</resultMap>
+
+	<select id="findAll"  resultMap="BaseResultMap">
+		SELECT HOTEL_ID, NAME, EMAIL, PHONE, FAX, RATE, LOCAL_CURRENCY_CODE, DESCRIPTION  FROM HOTEL
+	</select>
+
+	<select id="findById"  parameterType="int" resultMap="BaseResultMap">
+		SELECT HOTEL_ID, NAME, EMAIL, PHONE, FAX, RATE, LOCAL_CURRENCY_CODE, DESCRIPTION  FROM HOTEL WHERE HOTEL_ID = #{hotelId}
+	</select>
+
+	<insert id="insert" parameterType="Hotel">
+		INSERT INTO HOTEL (HOTEL_ID, NAME, EMAIL, PHONE, FAX, RATE, LOCAL_CURRENCY_CODE, DESCRIPTION)
+		VALUES ( #{hotelId}, #{name}, #{email}, #{phone}, #{fax}, #{rate}, #{localCurrencyCode}, #{description} )
+	</insert>
+
+	<update id="update" parameterType="Hotel">
+		UPDATE HOTEL SET
+		NAME = #{name},
+		EMAIL = #{email},
+		PHONE = #{phone},
+		FAX = #{fax},
+		RATE = #{rate},
+		LOCAL_CURRENCY_CODE = #{localCurrencyCode},
+		DESCRIPTION = #{description}
+		WHERE ID = #{hotelId}
+	</update>
+
+	<update id="delete"  parameterType="int">
+		DELETE FROM HOTEL WHERE HOTEL_ID = #{hotelId}
+	</update>
+</mapper>
