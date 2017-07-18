@@ -12,14 +12,8 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>springboot-ignite-sample</name>
-	<developers>
-		<developer>
-			<name></name>
-			<roles>
-				<role></role>
-			</roles>
-		</developer>
-	</developers>
+
+	<!-- -->
 	<modules>
 		<module>springboot-ignite-sample-util</module>
 		<module>springboot-ignite-sample-dto</module>
@@ -28,23 +22,12 @@
 		<module>springboot-ignite-sample-core</module>
 		<module>springboot-ignite-sample-ws</module>
 	</modules>
-	<!-- https://maven.apache.org/scm/git.html -->
-	<!-- https://maven.apache.org/scm/subversion.html -->
-	<scm>
-		<connection></connection>
-		<developerConnection></developerConnection>
-		<url></url>
-	</scm>
-	<ciManagement>
-		<system></system>
-		<url></url>
-	</ciManagement>
+
+	<properties>
+	</properties>
+	<profiles>
+	</profiles>
 	<dependencies>
-		<!-- -->
-		<dependency>
-			<groupId>com.aurora.architecture</groupId>
-			<artifactId>aurora-metrics</artifactId>
-		</dependency>
 		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
