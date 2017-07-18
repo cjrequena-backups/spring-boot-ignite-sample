@@ -27,6 +27,8 @@
 	</properties>
 	<profiles>
 	</profiles>
+    <dependencyManagement>
+    </dependencyManagement>
 	<dependencies>
 		<!-- Spring Boot -->
 		<dependency>
@@ -102,6 +104,8 @@
 		</dependency>
 	</dependencies>
 	<build>
+        <pluginManagement>
+        </pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
