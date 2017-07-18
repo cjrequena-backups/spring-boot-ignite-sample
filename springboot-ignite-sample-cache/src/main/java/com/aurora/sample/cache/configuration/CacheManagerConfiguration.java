@@ -24,11 +24,8 @@ import org.springframework.context.annotation.Primary;
 public class CacheManagerConfiguration {
 
     /**
-     * The caffeine cache manager.
+     *
      */
-    @Autowired
-    private CacheManager caffeineCacheManager;
-
     @Autowired
     private CacheManager igniteCacheManager;
 
@@ -43,7 +40,7 @@ public class CacheManagerConfiguration {
     public CacheManager cacheManager() {
         // Es importante el orden que se añaden los cache manager al CompositeCacheManager.
         // En caso de que compartan la misma CACHE_NAME, por defecto tomara la primera cacheManager añadida.
-        return new CompositeCacheManager(igniteCacheManager, caffeineCacheManager);
+        return new CompositeCacheManager(igniteCacheManager);
 
     }
 }

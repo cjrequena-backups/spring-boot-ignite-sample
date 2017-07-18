@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Log4j2
 @Service("hotelService")
-@CacheConfig(cacheNames = "CAFFEINE_CACHE_1")
+@CacheConfig(cacheNames = "testCache1")
 public class HotelServiceImpl implements HotelService {
 
     private static final String KEY_ALL = "'HOTELS-*'";

@@ -44,14 +44,3 @@ mybatis:
   type-aliases-package: com.aurora.sample.db.repository
   type-handlers-package: classpath*:**/SqlMaps/*.xml
   config-location: classpath:mybatis-config.xml
-cache:
-  caffeine:
-    configurations:
-      - cacheName: CAFFEINE_CACHE_1
-        #initialCapacity:
-        maximumSize: 100
-        #maximumWeight:
-        #expireAfterAccess: #SECONDS
-        #expireAfterWrite: #SECONDS
-        #refreshAfterWrite: #SECONDS
-        #concurrencyLevel:

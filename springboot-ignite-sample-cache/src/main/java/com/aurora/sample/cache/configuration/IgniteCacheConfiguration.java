@@ -3,7 +3,6 @@ package com.aurora.sample.cache.configuration;
 import lombok.Data;
 import org.apache.ignite.cache.CacheAtomicityMode;
 import org.apache.ignite.cache.CacheMode;
-import org.apache.ignite.cache.CacheWriteSynchronizationMode;
 import org.apache.ignite.cache.spring.SpringCacheManager;
 import org.apache.ignite.configuration.CacheConfiguration;
 import org.apache.ignite.configuration.IgniteConfiguration;
@@ -39,7 +38,6 @@ public class IgniteCacheConfiguration {
 //    private List<IgniteConfigurationProperties> configurationProperties = new ArrayList<>();
 
     /**
-     *
      * @return
      */
     @Bean(name = "igniteCacheManager")
@@ -63,6 +61,7 @@ public class IgniteCacheConfiguration {
         TcpDiscoverySpi tcpDiscoverySpi = new TcpDiscoverySpi();
         TcpDiscoveryMulticastIpFinder ipFinder = new TcpDiscoveryMulticastIpFinder();
         ipFinder.setAddresses(Collections.singletonList("127.0.0.1:47500..47509"));
+        //ipFinder.setAddresses(Collections.singletonList("192.168.82.100:47500..47509"));
         tcpDiscoverySpi.setIpFinder(ipFinder);
         //tcpDiscoverySpi.setLocalAddress("localhost");
         igniteConfiguration.setDiscoverySpi(tcpDiscoverySpi);
@@ -81,20 +80,24 @@ public class IgniteCacheConfiguration {
      * @return
      */
     @Bean(name = "cacheConfiguration")
-    public CacheConfiguration cacheConfiguration() {
-        CacheConfiguration cacheConfiguration = new CacheConfiguration();
-        cacheConfiguration.setAtomicityMode(CacheAtomicityMode.ATOMIC);
-        cacheConfiguration.setCacheMode(CacheMode.REPLICATED);
-        cacheConfiguration.setName("test-cache");
+    public CacheConfiguration[] cacheConfiguration() {
+        CacheConfiguration[] cacheConfigurations = new CacheConfiguration[10];
+        for (int i = 0; i < 10; i++) {
+            CacheConfiguration cacheConfiguration = new CacheConfiguration();
+            cacheConfiguration.setAtomicityMode(CacheAtomicityMode.ATOMIC);
+            cacheConfiguration.setCacheMode(CacheMode.REPLICATED);
+            cacheConfiguration.setName("testCache"+i);
 
-        //cacheConfiguration.setWriteSynchronizationMode(CacheWriteSynchronizationMode.FULL_SYNC);
-        cacheConfiguration.setWriteThrough(false);
-        cacheConfiguration.setReadThrough(false);
-        cacheConfiguration.setWriteBehindEnabled(false);
+            //cacheConfiguration.setWriteSynchronizationMode(CacheWriteSynchronizationMode.FULL_SYNC);
+            cacheConfiguration.setWriteThrough(false);
+            cacheConfiguration.setReadThrough(false);
+            cacheConfiguration.setWriteBehindEnabled(false);
 
-        cacheConfiguration.setBackups(1);
-        cacheConfiguration.setStatisticsEnabled(true);
-        return cacheConfiguration;
+            cacheConfiguration.setBackups(1);
+            cacheConfiguration.setStatisticsEnabled(true);
+            cacheConfigurations[i]=cacheConfiguration;
+        }
+        return cacheConfigurations;
     }
 
     /**
